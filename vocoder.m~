@@ -1,14 +1,26 @@
 clc 
 clearvars
-close all 
+close all
 
-% [y, Fs_y] = audioread('prova_vocoder_44.wav');
-duration = 5;
-Fs = 16000; %16KHz
+[y, Fs] = audioread('prova_vocoder_16.wav');
+duration_file = 5;
+duration_wind = 0.02;
+D = duration_file/duration_wind; % ratio between file and 20ms window
+N = length(y);
+L = N / D ; % number of window samples   
+window = hamming(L);
 
-prova_vocoder = audiorecorder(Fs,8,1);
-disp('Start speaking.')
-recordblocking(prova_vocoder, duration);
-disp('End of Recording.');
-my
 
+i = 0; j = 0;
+correlations = zeros(2*D, L);
+excerpt = zeros(L);
+while (i+L <= N)
+    excerpt(1:L) = (y(i+1:i+L).* window);
+    r = xcorr(excerpt, excerpt);
+    %[peaks, locs] = findpeaks(r);
+    i = i+ L/2; 
+    
+    j = j+1;
+    
+    correlations(j,:) = r;
+end
