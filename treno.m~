@@ -1,0 +1,5 @@
+function [y]=treno(t,T) 
+sig = zeros(1, length(t));
+sig(1: 1/T : length(t))
+end
+
