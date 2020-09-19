@@ -44,4 +44,39 @@ for i = 1:2*D
     coefs(i,:) = [1; A]';
 end
 
+msg=midi();%receiving a MIDI message (5 seconds)
 
+gain=5;
+
+freqs=zeros(1,D);
+time=0;
+m=2;
+for i=1:2*D
+    if(m<=length(msg))
+        if (msg(m).Timestamp-time-msg(m-1).Timestamp<0.01)
+            m=m+1;
+            time=0;
+        else
+            time=time+0.01;
+        end
+    else
+        m=length(msg);
+    end
+    if(msg(m-1).Velocity>0)
+        freqs(i)=440 * 2^((msg(m-1).Note-69)/12);
+    else
+        %note off
+        freqs(i)=30000;
+    end
+end
+
+excitation_signal=zeros(1,N);
+output=zeros(1,N);
+win=1;
+for i=1:L/2:N-L
+    excitation_signal(i:i+L-1)=treno(L,freqs(win));
+    output(i:i+L-1)=filter(gain,coefs(win,:),excitation_signal(i:i+L-1));
+    win=win+1;
+end
+
+audiowrite('output.wav',cast(output,'uint8'),Fs);
