@@ -1,0 +1,8 @@
+function [msg] = midi()
+    device = mididevice('MPK Mini Mk II');
+    display('Start Playing...')
+    pause(5);
+    display('Finish')
+    msg = midireceive(device);
+end
+
