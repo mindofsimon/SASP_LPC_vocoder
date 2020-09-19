@@ -43,3 +43,5 @@ for i = 1:2*D
     end
     coefs(i,:) = [1; A]';
 end
+
+

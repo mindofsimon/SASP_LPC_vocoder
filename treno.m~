@@ -1,5 +1,11 @@
-function [y]=treno(t,T) 
-sig = zeros(1, length(t));
-sig(1: 1/T : length(t))
+function sig =treno(frame_length,T) 
+sig = zeros(1, frame_length);
+for f = 1: frame_length
+    if (f./frame_length = floor(f./frame_lengt))
+        sig(f) = 1;
+    else
+        sig(f) = 0;
+    end
+end
 end
 
