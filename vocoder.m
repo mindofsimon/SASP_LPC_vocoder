@@ -8,17 +8,17 @@ duration_wind = 0.02;
 D = duration_file/duration_wind; % ratio between file and 20ms window
 N = length(y);
 L = N / D ; % number of window samples   
-window = hamming(L);
+window = rectwin(L);
 
 
 i = 0; j = 0;
-correlations = zeros(2*D, 2*L-1);
+correlations = zeros(D, 2*L-1);
 excerpt = zeros(L,1);
 while (i+L <= N)
-    excerpt(1:L) = (y(i+1:i+L).* window);
+    excerpt(1:L) = (y(i+1:i+L));
     r = xcorr(excerpt);
     %[peaks, locs] = findpeaks(r);
-    i = i+ L/2; 
+    i = i+ L; 
     
     j = j+1;
     
@@ -28,8 +28,8 @@ end
 
 % Estimate LPC coefficients using Levinson's method
 lpc_order = 18; % order of LPC filter, we'll have lpc_order + 1 coefficients
-coefs = zeros(2*D, lpc_order + 1);
-for i = 1:2*D
+coefs = zeros(D, lpc_order + 1);
+for i = 1:D
     autocorrVec = correlations(i,1:lpc_order+1);
     err(1) = autocorrVec(1);
     k(1) = 0;
@@ -51,7 +51,7 @@ gain=5;
 freqs=zeros(1,D);
 time=0;
 m=2;
-for i=1:2*D
+for i=1:D
     if(m<=length(msg))
         if (msg(m).Timestamp-time-msg(m-1).Timestamp<0.01)
             m=m+1;
@@ -73,7 +73,7 @@ end
 excitation_signal=zeros(1,N);
 output=zeros(1,N);
 win=1;
-for i=1:L/2:N-L
+for i=1: L :N-L
     excitation_signal(i:i+L-1)=treno(L,freqs(win));
     output(i:i+L-1)=filter(gain,coefs(win,:),excitation_signal(i:i+L-1));
     win=win+1;
