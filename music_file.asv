@@ -1,0 +1,6 @@
+function music_freqs = music_file(file_name)
+
+outputArg1 = inputArg1;
+outputArg2 = inputArg2;
+end
+
