@@ -15,8 +15,10 @@ i = 0; j = 0;
 correlations = zeros(2*D, 2*L-1);
 excerpt = zeros(L,1);
 while (i+L <= N)
-    excerpt(1:L) = (y(i+1:i+L));
-    r = xcorr(excerpt);
+    excerpt(1:L) = (y(i+1:i+L).*window);
+    [r , lg]= xcorr(excerpt);
+    %r(lg<0) = [];
+    
     %[peaks, locs] = findpeaks(r);
     i = i+ L/2; 
     
@@ -26,22 +28,23 @@ while (i+L <= N)
 end
 
 
-% Estimate LPC coefficients using Levinson's method
+
+% %Estimate LPC coefficients using Levinson's method
 lpc_order = 18; % order of LPC filter, we'll have lpc_order + 1 coefficients
-coefs = zeros(2*D, lpc_order + 1);
+coefs = zeros(2*D, lpc_order );
 for i = 1:2*D
-    autocorrVec = correlations(i,1:lpc_order+1);
-    err(1) = autocorrVec(1);
-    k(1) = 0;
-    A = [];
-    for index=1:lpc_order
-        numerator = [1 A.']*autocorrVec(index+1:-1:2)';
-        denominator = -1*err(index);
-        k(index) = numerator/denominator;
-        A = [A+k(index)*flipud(A); k(index)];
-        err(index+1) = (1-k(index)^2)*err(index);
-    end
-    coefs(i,:) = [1; A]';
+%     autocorrVec = correlations(i,1:lpc_order+1);
+%     err(1) = autocorrVec(1);
+%     k(1) = 0;
+%     A = [];
+%     for index=1:lpc_order
+%         numerator = [1 A.']*autocorrVec(index+1:-1:2)';
+%         denominator = -1*err(index);
+%         k(index) = numerator/denominator;
+%         A = [A+k(index)*flipud(A); k(index)];
+%         err(index+1) = (1-k(index)^2)*err(index);
+%     end
+    coefs(i,:) = levinson(correlations(i, 1:lpc_order));
 end
 
 % msg=midi();%receiving a MIDI message (5 seconds)
@@ -78,9 +81,10 @@ output=zeros(1,N);
 win=1;
 for i=1: L/2 :N-L
     excitation_signal(i:i+L-1)=treno(L,freqs(win));
+    %excitation_signal(i:i+L-1)= treno_2(duration_wind, L, freqs(win), Fs);
     output(i:i+L-1)=filter(gain,coefs(win,:),excitation_signal(i:i+L-1));
     win=win+1;
 end
  
-audiowrite('output.wav',cast(output,'uint8'),Fs);
+audiowrite('output.wav',output,Fs);
 

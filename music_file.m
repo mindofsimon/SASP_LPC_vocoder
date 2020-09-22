@@ -26,6 +26,10 @@ function music_freqs = music_file(file_name, win_length ,n_frames)
     for m = 0 : n_frames-1
         [~,k_b(m+1)] = max(S_dB(m+1 , : ));
     end
-    music_freqs=k_b;
+    k_k = 1;
+    d = 2*k_k+1;
+    k(:,1)= medfilt1(k_b,d);
+    
+    music_freqs=k;
 end
 
