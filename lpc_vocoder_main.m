@@ -71,8 +71,15 @@ for i=1:nframes,
   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   
   % calculate pitch delay in samples (TODO) %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%   if state == voiced 
+%       ltp = ltp_estimation( res_xFrame );
+%       fprintf(1,'LTP: %d\n', ltp);
+%       pitchTX(:,i) = ltp;
+%   end
+  
   if state == voiced 
-      ltp = ltp_estimation( res_xFrame );
+      msg = midi();
+      [~,ltp] = midi_freqs(xFrame, nframe, 0.02, frame_length);
       fprintf(1,'LTP: %d\n', ltp);
       pitchTX(:,i) = ltp;
   end
