@@ -30,7 +30,9 @@ voiceless = 3;
       else
           first = max(1, ltpDelay - overhang);
       end      
-      pulses = first:ltpDelay:blockLength;
+      display(ltpDelay);
+      display(first);
+      pulses = round(first):round(ltpDelay):blockLength;
       excitation(pulses) = 1;
       overhang = blockLength - pulses(end);
   end

@@ -34,7 +34,11 @@ residualTX = zeros(frame_length, nframes);
 % ====================== CODER main loop (start) ========================
 idx = 1 : frame_length;
 
-for i=1:nframes,
+msg = midi();
+count=2;
+time=0;
+
+for i=1:nframes
 
   fprintf(1,'-------------------- [%3d]\n',i);
       
@@ -78,8 +82,7 @@ for i=1:nframes,
 %   end
   
   if state == voiced 
-      msg = midi();
-      [~,ltp] = midi_freqs(xFrame, nframe, 0.02, frame_length);
+      [~,ltp,count,time] = midi_freqs(msg, 0.02, frame_length, count,time);
       fprintf(1,'LTP: %d\n', ltp);
       pitchTX(:,i) = ltp;
   end
