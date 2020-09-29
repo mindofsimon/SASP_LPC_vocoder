@@ -8,7 +8,7 @@ duration_win=0.02;
 
 % Initialize codec parameters
 frame_length = fs*duration_win;  % 160 sample frames at 8kHz: 20 ms
-lpcOrder = round(fs/1000)+2;      % LPC order
+lpcOrder = round(fs;      % LPC order
 
 % Codec states
 sil = 1;
