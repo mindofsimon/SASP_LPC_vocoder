@@ -40,6 +40,9 @@ idx = 1 : frame_length;
 %time=0;
 
 count_music=0;
+cont_audio=1;
+
+[audio_file, audio_fs]=audioread('mistery-piano-violin-sad-melody.wav');
 
 for i=1:nframes
 
@@ -71,8 +74,11 @@ for i=1:nframes
   %[~,ltp,count_midi,time,state_midi] = midi_freqs(msg, duration_win, frame_length, count_midi,time);
   
   if state == unvoiced | state == voiced
-      [ a, lpc_mem, res_xFrame ] = lpc_filter(xFrame, lpcOrder, lpc_mem);
-      residualTX(:,i) = res_xFrame;                    % Prediction error
+      %residuals part
+      [residuals, cont_audio] = lpc_filter_res(audio_file, lpcOrder, cont_audio, frame_length);
+      residualTX(:,i) = residuals;
+      [a, lpc_mem, res_xFrame ] = lpc_filter(xFrame, lpcOrder, lpc_mem);
+      %residualTX(:,i) = res_xFrame;                    % Prediction error
       
       %fprintf(1,'LPC coeffs: %f %f %f %f %f %f %f %f %f %f\n', ...
           %a(1), a(2), a(3), a(4), a(5), a(6), a(7), a(8), a(9), a(10));
@@ -89,9 +95,9 @@ for i=1:nframes
   
   if state == voiced %&& state_midi==2
       %[~,ltp,count_midi,time] = midi_freqs(msg, duration_win, frame_length, count_midi,time);
-      [ltp,count_music]=music_file('flute.wav',frame_length,duration_win,count_music);
+      %[ltp,count_music]=music_file('flute.wav',frame_length,duration_win,count_music);
       %fprintf(1,'LTP: %d\n', ltp);
-      pitchTX(:,i) = ltp;
+      %pitchTX(:,i) = ltp;
   end
   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   
@@ -133,13 +139,16 @@ for i=1:nframes,
     % TODO %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     % excitation = residualTX(:,i);   % !! REMOVE ME !!
     % and substitute with the excitation function below
-    [excitation, pitch_offset] = excitation_synth(state, ltpDelay, pitch_offset, frame_length);
+    %[excitation, pitch_offset] = excitation_synth(state, ltpDelay, pitch_offset, frame_length);
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
         
     
+    %residual part
+    %[ lpc_output] = lpc_synth_res(residualTX(:,i), a);
+    [ lpc_output, lpc_mem ] = lpc_synth(residualTX(:,i), a, lpc_mem);
     % speech synthesis by mean of the inverse LPC filter (TODO) %%%%%%%%%%
     % Note: keep filter memory
-    [ lpc_output, lpc_mem ] = lpc_synth(excitation, a, lpc_mem);
+    %[ lpc_output, lpc_mem ] = lpc_synth(excitation, a, lpc_mem);
 %    plot(lpc_output); pause(0.1);
     
     %yFrame = lpc_output;    % !! REMOVE ME !!
