@@ -1,4 +1,6 @@
-close all; clear all;
+close all;
+
+global zcrTX;
 
 [x, fs] = audioread('prova_vocoder_44_2.wav');
 
