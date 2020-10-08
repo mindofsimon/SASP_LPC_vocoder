@@ -1,14 +1,22 @@
-function [ y ] = lpc_vocoder_main( x,fs )
+function [ y ] = lpc_vocoder_main( x,fs,app )
 
 % Simple LPC vocoder without quantization
 % Input signal in the range -1:1 scaled to -32768 ... 32767
 x = x/max(x);
 x = x .* 2^15;
-duration_win=0.02;
+%duration_win=0.02;
+
+%get input from interface
+duration_win=app.FrameLengthEditField.Value/1000;%from milliseconds to seconds
+win_type=app.WindowDropDown.Value;
+overlap=app.OverlapEditField.Value;
 
 % Initialize codec parameters
 frame_length = fs*duration_win;  % 160 sample frames at 8kHz: 20 ms
 lpcOrder = round(fs/1000)+2;      % LPC order
+app.FsEditField.Value=fs;
+app.LPCOrderEditField.Value=lpcOrder;
+
 
 % Codec states
 sil = 1;
@@ -200,6 +208,12 @@ hold off;
 
 y = (y ./ 2^15);
 audiowrite('output.wav',y,fs);
+
+%APP Plots
+plot(app.AxesInput,x);
+plot(app.AxesOutput,y);
+plot(app.AxesResiduals,residualTX);
+plot(app.AxesZCR,zcrTX);
 
 end
 
