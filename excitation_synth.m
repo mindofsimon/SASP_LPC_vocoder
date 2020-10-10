@@ -33,7 +33,12 @@ voiceless = 3;
       
       pulses = round(first):round(ltpDelay):blockLength;
       excitation(pulses) = 1;
-      overhang = blockLength - pulses(end);
+      [a,b]=size(pulses);
+      if a==0||b==0
+        overhang = blockLength;
+      else
+        overhang = blockLength - pulses(end);
+      end
   end
 end
 

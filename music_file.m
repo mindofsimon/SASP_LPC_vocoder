@@ -20,7 +20,7 @@ function [ltpDelay, i] = music_file(file_name, samples_frame, duration_frames ,i
     % find the indices of the spectral maxima
     [~,k_b] = max(S_dB);
     
-    ltpDelay = samples_frame/((k_b/8)*duration_frames);
+    ltpDelay = samples_frame/((k_b)*duration_frames);
     i=i+samples_frame;
 end
 
