@@ -17,7 +17,7 @@ time=msg(i-1).Timestamp+t;
         pitch = samples_frame/(freqs*duration_frames);
     else
         %note off
-        state=1;
+        state=0;
         freqs=10;
         pitch = samples_frame/(freqs*duration_frames);
     end

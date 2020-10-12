@@ -1,8 +1,8 @@
-function [y] = output_residuals(x,frame_length,lpcOrder,overlap,window)
+function [y,stateTX,zcrTX] = output_residuals(x,frame_length,lpcOrder,overlap,window,res_file)
     % Codec states
-    sil = 1;
+    sil = 0;
     voiced = 2;
-    unvoiced = 3;
+    unvoiced = 1;
 
     G = [];
     lpc_mem = zeros(1, lpcOrder);  % filter memory
@@ -33,7 +33,7 @@ function [y] = output_residuals(x,frame_length,lpcOrder,overlap,window)
     count_music=0;
     cont_audio=1;
 
-    [audio_file, audio_fs]=audioread('mistery-piano-violin-sad-melody.wav');
+    [audio_file, audio_fs]=audioread(res_file);
 
     for i=1:nframes-1
 

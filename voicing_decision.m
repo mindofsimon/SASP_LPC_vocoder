@@ -5,9 +5,9 @@ voiced_threshold = 0.3;
 zcr = 0;
 
 % initialize variables for encoding frame types 
-silFrame = 1;
+silFrame = 0;
 voicedFrame = 2;
-unvoicedFrame = 3;
+unvoicedFrame = 1;
 
 len = length(xFrame);
 

@@ -1,8 +1,8 @@
-function [y] = output_midi(x,frame_length,lpcOrder,overlap,window,duration_win)
+function [y,stateTX,zcrTX] = output_midi(x,frame_length,lpcOrder,overlap,window,duration_win)
     % Codec states
-    sil = 1;
+    sil = 0;
     voiced = 2;
-    unvoiced = 3;
+    unvoiced = 1;
 
     G = [];
     lpc_mem = zeros(1, lpcOrder);  % filter memory
@@ -67,8 +67,8 @@ function [y] = output_midi(x,frame_length,lpcOrder,overlap,window,duration_win)
       end
       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-      if state == voiced && state_midi==2
-          [~,ltp,count_midi,time] = midi_freqs(msg, duration_win, frame_length, count_midi,time);
+      if state == voiced && state_midi==voiced
+          %[~,ltp,count_midi,time] = midi_freqs(msg, duration_win, frame_length, count_midi,time);
           pitchTX(:,i) = ltp;
       end
       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

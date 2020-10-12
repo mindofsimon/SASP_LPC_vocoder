@@ -1,8 +1,8 @@
-function [y] = output_music(x,frame_length,lpcOrder,overlap,window,duration_win)
+function [y,stateTX,zcrTX] = output_music(x,frame_length,lpcOrder,overlap,window,duration_win)
     % Codec states
-    sil = 1;
+    sil = 0;
     voiced = 2;
-    unvoiced = 3;
+    unvoiced = 1;
 
     G = [];
     lpc_mem = zeros(1, lpcOrder);  % filter memory

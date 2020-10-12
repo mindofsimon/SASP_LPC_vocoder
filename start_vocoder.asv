@@ -1,11 +1,12 @@
 function [] = start_vocoder(app)
-    if app.SamplesButton.Value==1
+    if app.SamplesButton.Value=="Samples"
         input_file=app.InputDropDown.Value;
     else
         input_file=audio_recording_2();
-    end
-    
+        
     [x, fs] = audioread(input_file);
+    
+    
     y = lpc_vocoder_main(x,fs,app);
 end
 
