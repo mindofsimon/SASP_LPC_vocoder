@@ -34,7 +34,6 @@ app.LPCOrderEditField.Value=lpcOrder;
 if(app.ExcitationSignalDropDown.Value=="MIDI")
     [y,state,zcr]=output_midi(x,frame_length,lpcOrder,overlap,window,duration_win);
 elseif(app.ExcitationSignalDropDown.Value=="Music File")
- 
     [y,state,zcr]=output_music(x,frame_length,lpcOrder,overlap,window,duration_win);
 else
     [y,state,zcr]=output_residuals(x,frame_length,lpcOrder,overlap,window,res_file);
@@ -44,8 +43,18 @@ y = (y ./ 2^15);
 audiowrite('output.wav',y,fs);
 
 %APP Plots
-plot(app.AxesInput,x);
-plot(app.AxesOutput,y);
+t=0:(1/fs):(length(x)/fs);
+app.AxesInput.XLimMode = 'manual';
+app.AxesInput.XLim = [0, t(end)];
+app.AxesInput.XLimMode = 'manual';
+app.AxesInput.XLim = [, t(end)];
+%app.AxesInput.XTickMode = 'manual';
+%app.AxesInput.XTick = ([0,1,2,3,4,5]);
+%app.AxesInput.XTickLabelMode = 'manual';
+%app.AxesInput.XTickLabel = [0,1,2,3,4,5];
+
+plot(app.AxesInput,t(1:end-1),x);
+plot(app.AxesOutput,t(1:end-1),y);
 plot(app.AxesState,state);
 plot(app.AxesZCR,zcr);
 
