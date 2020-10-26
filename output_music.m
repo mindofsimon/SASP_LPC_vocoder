@@ -32,7 +32,7 @@ function [y,stateTX,zcrTX] = output_music(x,frame_length,lpcOrder,overlap,window
 
     count_music=0;
 
-    [audio_file, audio_fs]=audioread('flute.wav');
+    [audio_file, audio_fs]=audioread('AudioSamples\flute.wav');
     
     if length(audio_file)>length(x)
         audio_file=audio_file(1:length(x));

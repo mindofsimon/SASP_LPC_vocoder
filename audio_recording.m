@@ -9,7 +9,7 @@ recordblocking(prova_vocoder, duration);
 h2=helpdlg('Finished Recording','Record');%open dialog win
 uiwait(h2);%wait for confirmation
 myspeech = getaudiodata(prova_vocoder, 'double');
-audiowrite('user_recording.wav', myspeech, Fs);
-input_file=('user_recording.wav');
+audiowrite('AudioSamples\user_recording.wav', myspeech, Fs);
+input_file=('AudioSamples\user_recording.wav');
 end
 
