@@ -12,10 +12,10 @@ function [y,stateTX,zcrTX] = output_midi(x,frame_length,lpcOrder,overlap,window,
 
     if overlap ~= 0
         nframes = ceil( len / (frame_length*overlap) );
-        x = x(1:(nframes*frame_length*overlap));
+        %x = x(1:(nframes*frame_length*overlap));
     else
         nframes = ceil( len / (frame_length) );
-        x = x(1:(nframes*frame_length));    
+        %x = x(1:(nframes*frame_length));    
     end
 
     %= initialize data storage for transmitted parameters 

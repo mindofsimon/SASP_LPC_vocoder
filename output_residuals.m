@@ -11,10 +11,10 @@ function [y,stateTX,zcrTX] = output_residuals(x,frame_length,lpcOrder,overlap,wi
     x=x(:); len = length(x);
 
     if overlap ~= 0
-        nframes = ceil( len / (frame_length*overlap) );
+        nframes = floor( len / (frame_length*overlap) );
         x = x(1:(nframes*frame_length*overlap));
     else
-        nframes = ceil( len / (frame_length) );
+        nframes = floor( len / (frame_length) );
         x = x(1:(nframes*frame_length));    
     end
 
@@ -34,8 +34,12 @@ function [y,stateTX,zcrTX] = output_residuals(x,frame_length,lpcOrder,overlap,wi
     cont_audio=1;
 
     [audio_file, audio_fs]=audioread(res_file);
-
-    for i=1:nframes-1
+    
+    if length(audio_file)>length(x)
+        audio_file=audio_file(1:length(x));
+    end
+    
+    for i=1:nframes
 
       % get current frame  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
       xFrame = x( idx ).*window;
@@ -76,15 +80,14 @@ function [y,stateTX,zcrTX] = output_residuals(x,frame_length,lpcOrder,overlap,wi
     % ==================== DECODER main loop (start) ========================
 
     % initialize decoder variables
-    y = zeros(nframes*frame_length,1);
-
+    y = zeros(length(x),1);
     randn('seed',0);                    % random noise
     lpc_mem = zeros(1, lpcOrder );    % memory of the LPC filter
     pitch_offset = 0;                       % memory of the LTP (pitch) filter
 
     idx = 1 : frame_length;
 
-    for i=1:nframes-1,
+    for i=1:nframes
 
         % get sil / voiced / unvoiced decision %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
         state = stateTX(i);

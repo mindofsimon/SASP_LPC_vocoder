@@ -33,8 +33,12 @@ function [y,stateTX,zcrTX] = output_music(x,frame_length,lpcOrder,overlap,window
     count_music=0;
 
     [audio_file, audio_fs]=audioread('flute.wav');
-
-    for i=1:nframes-1
+    
+    if length(audio_file)>length(x)
+        audio_file=audio_file(1:length(x));
+    end
+    
+    for i=1:nframes
 
       % get current frame %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
       xFrame = x( idx ).*window;
@@ -83,7 +87,7 @@ function [y,stateTX,zcrTX] = output_music(x,frame_length,lpcOrder,overlap,window
 
     idx = 1 : frame_length;
 
-    for i=1:nframes-1,
+    for i=1:nframes
 
         % get sil / voiced / unvoiced decision %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
         state = stateTX(i);

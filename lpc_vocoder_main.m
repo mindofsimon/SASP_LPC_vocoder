@@ -43,14 +43,15 @@ y = (y ./ 2^15);
 audiowrite('output.wav',y,fs);
 
 %APP Plots
-t=0:(1/fs):(length(x)/fs);
+t=0:(1/fs):(length(y)/fs);
 app.AxesInput.YLimMode = 'manual';
 app.AxesInput.YLim = [-1, 1];
 app.AxesOutput.YLimMode = 'manual';
 app.AxesOutput.YLim = [-1, 1];
 
 x = x ./ 2^15;%just to put it again at -1:1 on Y axis
-plot(app.AxesInput,t(1:end-1),x);
+
+plot(app.AxesInput,t(1:end-1),x(1:length(y)));
 plot(app.AxesOutput,t(1:end-1),y);
 plot(app.AxesState,state);
 plot(app.AxesZCR,zcr);
