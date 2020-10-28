@@ -1,0 +1,16 @@
+function [] = start_vocoder(app)
+    if app.SamplesButton.Value==1
+        input_file="AudioSamples\"+app.InputDropDown.Value;
+    else
+        input_file=audio_recording();
+    end
+    
+    if app.ExcitationSignalDropDown.Value=='MIDI'
+        devices=mididevinfo;
+        for i=0:
+    end
+    
+    [x, fs] = audioread(input_file);
+    y = lpc_vocoder_main(x,fs,app);
+end
+
