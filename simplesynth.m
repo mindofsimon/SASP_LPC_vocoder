@@ -6,7 +6,12 @@ function simplesynth(midiDeviceName)
     deviceWriter.SupportVariableSizeInput = true;
     deviceWriter.BufferSize = 64; % small buffer keeps MIDI latency low
 
-    while true
+    active=true;
+    
+    t=timer('TimerFcn','active=false;', 'Period', 7.0);
+    t.start();
+    
+    while active
         msgs = midireceive(midiInput);
         for i = 1:numel(msgs)
             msg = msgs(i);

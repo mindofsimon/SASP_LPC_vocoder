@@ -32,7 +32,7 @@ app.LPCOrderEditField.Value=lpcOrder;
 
 %Excitation Signal Mode
 if(app.ExcitationSignalDropDown.Value=="MIDI")
-    [y,state,zcr]=output_midi(x,frame_length,lpcOrder,overlap,window,duration_win);
+    [y,state,zcr]=output_midi(app,x,frame_length,lpcOrder,overlap,window,duration_win);
 elseif(app.ExcitationSignalDropDown.Value=="Music File")
     [y,state,zcr]=output_music(x,frame_length,lpcOrder,overlap,window,duration_win);
 else

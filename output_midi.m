@@ -1,4 +1,4 @@
-function [y,stateTX,zcrTX] = output_midi(x,frame_length,lpcOrder,overlap,window,duration_win)
+function [y,stateTX,zcrTX] = output_midi(app,x,frame_length,lpcOrder,overlap,window,duration_win)
     % Codec states
     sil = 0;
     voiced = 2;
@@ -30,7 +30,7 @@ function [y,stateTX,zcrTX] = output_midi(x,frame_length,lpcOrder,overlap,window,
     % ====================== CODER main loop (start) ========================
     idx = 1 : frame_length;
 
-    msg = midi();
+    msg = midi(app);
     count_midi=2;
     time=0;
 

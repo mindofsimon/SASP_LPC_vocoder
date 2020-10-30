@@ -3,9 +3,9 @@ function [ excitation, overhang ] = excitation_synth( state, ltpDelay, overhang,
 inputNoise = randn( blockLength, 1 );
 
 % initialize variables for encoding coder states
-silence = 1;
+silence = 0;
 voiced = 2;
-voiceless = 3;
+voiceless = 1;
 
     %%%% if silence frame
     %
@@ -40,5 +40,6 @@ voiceless = 3;
         overhang = blockLength - pulses(end);
       end
   end
+  display(excitation);
 end
 
