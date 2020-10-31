@@ -40,6 +40,5 @@ voiceless = 1;
         overhang = blockLength - pulses(end);
       end
   end
-  display(excitation);
 end
 

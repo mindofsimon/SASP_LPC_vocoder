@@ -11,11 +11,10 @@ function [total_msg] = midi(app)
     h1=helpdlg('Press OK to start recording','Record');%open dialog win
     uiwait(h1);%wait for confirmation
     
-    c1=clock;
-    c2=[0,0,0,0,0,0];
+    tic;
+    elapsed_time=toc;
     
-    while c2(6)<c1(6)+5
-          c2=clock;
+    while elapsed_time<7
         msgs = midireceive(midiInput);
         [a,b]=size(msgs);
         if(a&&b ~= 0)
@@ -33,8 +32,9 @@ function [total_msg] = midi(app)
             end
         end
         deviceWriter(osc());
+        elapsed_time=toc;
     end
-    %pause(6);%5 for a little latency
+    toc;
     h2=helpdlg('Finished Recording','Record');%open dialog win
     uiwait(h2);%wait for confirmation
 end
@@ -54,4 +54,3 @@ function freq = note2freq(note)
     noteA = 69;
     freq = freqA * 2.^((note-noteA)/12);
 end
-
