@@ -10,7 +10,7 @@ x = x .* 2^15;
 duration_win=app.FrameLengthEditField.Value/1000;%from milliseconds to seconds
 win_type=app.WindowDropDown.Value;
 overlap=app.OverlapEditField.Value/100;
-res_file="AudioSamples\"+app.ResidualsFileDropDown.Value;
+res_file= app.ResidualsFileDropDown.Value;
 
 % Initialize codec parameters
 frame_length = fs*duration_win;% 160 sample frames at 8kHz: 20 ms
