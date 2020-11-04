@@ -1,0 +1,78 @@
+<deployment-project plugin="plugin.apptool" plugin-version="1.0">
+  <configuration build-checksum="702146428" file="C:\Users\maria\OneDrive\Desktop\SASP_LPC_vocoder\SASP_LPC_vocoder\LPC VOCODER.prj" location="C:\Users\maria\OneDrive\Desktop\SASP_LPC_vocoder\SASP_LPC_vocoder" name="LPC VOCODER" target="target.mlapps" target-name="Package App">
+    <param.appname>LPC VOCODER</param.appname>
+    <param.authnamewatermark>Daniele Ugo Leonzio - Simone Mariani</param.authnamewatermark>
+    <param.email>danieleugo.leonzio@mail.polimi.it - simone5.mariani@mail.polimi.it</param.email>
+    <param.company>POLIMI</param.company>
+    <param.icon>${PROJECT_ROOT}\LPC VOCODER_resources\icon_24.png</param.icon>
+    <param.icons>
+      <file>${PROJECT_ROOT}\LPC VOCODER_resources\icon_48.png</file>
+      <file>${PROJECT_ROOT}\LPC VOCODER_resources\icon_24.png</file>
+      <file>${PROJECT_ROOT}\LPC VOCODER_resources\icon_16.png</file>
+    </param.icons>
+    <param.summary>LPC Vocoder (MATLAB app)</param.summary>
+    <param.description>LPC Vocoder with three modes of excitation signal: MIDI Track, Music File, Residuals.</param.description>
+    <param.screenshot>${PROJECT_ROOT}\Midi Keyboard.jpg</param.screenshot>
+    <param.version>1.0</param.version>
+    <param.products.name />
+    <param.products.id />
+    <param.products.version />
+    <param.platforms />
+    <param.output>C:\Users\maria\OneDrive\Desktop\app_package</param.output>
+    <param.guid>2803e14d-c072-47a6-bb3a-a2455dfdcb91</param.guid>
+    <unset>
+      <param.version />
+      <param.products.name />
+      <param.products.id />
+      <param.products.version />
+      <param.platforms />
+    </unset>
+    <fileset.main>
+      <file>${PROJECT_ROOT}\interface.mlapp</file>
+    </fileset.main>
+    <fileset.depfun>
+      <file>${PROJECT_ROOT}\audio_recording.m</file>
+      <file>${PROJECT_ROOT}\excitation_synth.m</file>
+      <file>${PROJECT_ROOT}\flute.wav</file>
+      <file>${PROJECT_ROOT}\lpc_filter.m</file>
+      <file>${PROJECT_ROOT}\lpc_filter_res.m</file>
+      <file>${PROJECT_ROOT}\lpc_gain.m</file>
+      <file>${PROJECT_ROOT}\lpc_synth.m</file>
+      <file>${PROJECT_ROOT}\lpc_vocoder_main.m</file>
+      <file>${PROJECT_ROOT}\midi.m</file>
+      <file>${PROJECT_ROOT}\midi_freqs.m</file>
+      <file>${PROJECT_ROOT}\music_file.m</file>
+      <file>${PROJECT_ROOT}\output.wav</file>
+      <file>${PROJECT_ROOT}\output_midi.m</file>
+      <file>${PROJECT_ROOT}\output_music.m</file>
+      <file>${PROJECT_ROOT}\output_residuals.m</file>
+      <file>${PROJECT_ROOT}\start_vocoder.m</file>
+      <file>${PROJECT_ROOT}\voicing_decision.m</file>
+    </fileset.depfun>
+    <fileset.resources />
+    <fileset.package />
+    <build-deliverables>
+      <file location="C:\Users\maria\OneDrive\Desktop" name="app_package" optional="false">C:\Users\maria\OneDrive\Desktop\app_package</file>
+    </build-deliverables>
+    <workflow />
+    <matlab>
+      <root>C:\Program Files\MATLAB\R2019b</root>
+      <toolboxes />
+    </matlab>
+    <platform>
+      <unix>false</unix>
+      <mac>false</mac>
+      <windows>true</windows>
+      <win2k>false</win2k>
+      <winxp>false</winxp>
+      <vista>false</vista>
+      <linux>false</linux>
+      <solaris>false</solaris>
+      <osver>10.0</osver>
+      <os32>false</os32>
+      <os64>true</os64>
+      <arch>win64</arch>
+      <matlab>true</matlab>
+    </platform>
+  </configuration>
+</deployment-project>

@@ -11,10 +11,10 @@ function [y,stateTX,zcrTX] = output_music(x,frame_length,lpcOrder,overlap,window
     x=x(:); len = length(x);
 
     if overlap ~= 0
-        nframes = ceil( len / (frame_length*overlap) );
+        nframes = floor( len / (frame_length*overlap) );
         x = x(1:(nframes*frame_length*overlap));
     else
-        nframes = ceil( len / (frame_length) );
+        nframes = floor( len / (frame_length) );
         x = x(1:(nframes*frame_length));    
     end
 
