@@ -1,5 +1,5 @@
 <deployment-project plugin="plugin.apptool" plugin-version="1.0">
-  <configuration build-checksum="702146428" file="C:\Users\maria\OneDrive\Desktop\SASP_LPC_vocoder\SASP_LPC_vocoder\LPC VOCODER.prj" location="C:\Users\maria\OneDrive\Desktop\SASP_LPC_vocoder\SASP_LPC_vocoder" name="LPC VOCODER" target="target.mlapps" target-name="Package App">
+  <configuration build-checksum="3741765980" file="C:\Users\maria\OneDrive\Desktop\SASP_LPC_vocoder\SASP_LPC_vocoder\LPC VOCODER.prj" location="C:\Users\maria\OneDrive\Desktop\SASP_LPC_vocoder\SASP_LPC_vocoder" name="LPC VOCODER" target="target.mlapps" target-name="Package App">
     <param.appname>LPC VOCODER</param.appname>
     <param.authnamewatermark>Daniele Ugo Leonzio - Simone Mariani</param.authnamewatermark>
     <param.email>danieleugo.leonzio@mail.polimi.it - simone5.mariani@mail.polimi.it</param.email>
