@@ -1,5 +1,5 @@
 <deployment-project plugin="plugin.apptool" plugin-version="1.0">
-  <configuration build-checksum="2498457758" file="C:\Users\maria\OneDrive\Desktop\SASP_LPC_vocoder\SASP_LPC_vocoder\LPC VOCODER.prj" location="C:\Users\maria\OneDrive\Desktop\SASP_LPC_vocoder\SASP_LPC_vocoder" name="LPC VOCODER" target="target.mlapps" target-name="Package App">
+  <configuration build-checksum="3616747358" file="C:\Users\maria\OneDrive\Desktop\SASP_LPC_vocoder\SASP_LPC_vocoder\LPC VOCODER.prj" location="C:\Users\maria\OneDrive\Desktop\SASP_LPC_vocoder\SASP_LPC_vocoder" name="LPC VOCODER" target="target.mlapps" target-name="Package App">
     <param.appname>LPC VOCODER</param.appname>
     <param.authnamewatermark>Daniele Ugo Leonzio - Simone Mariani</param.authnamewatermark>
     <param.email>danieleugo.leonzio@mail.polimi.it - simone5.mariani@mail.polimi.it</param.email>
@@ -33,7 +33,6 @@
     <fileset.depfun>
       <file>${PROJECT_ROOT}\audio_recording.m</file>
       <file>${PROJECT_ROOT}\excitation_synth.m</file>
-      <file>${PROJECT_ROOT}\flute.wav</file>
       <file>${PROJECT_ROOT}\lpc_filter.m</file>
       <file>${PROJECT_ROOT}\lpc_filter_res.m</file>
       <file>${PROJECT_ROOT}\lpc_gain.m</file>
@@ -42,14 +41,34 @@
       <file>${PROJECT_ROOT}\midi.m</file>
       <file>${PROJECT_ROOT}\midi_freqs.m</file>
       <file>${PROJECT_ROOT}\music_file.m</file>
-      <file>${PROJECT_ROOT}\output.wav</file>
       <file>${PROJECT_ROOT}\output_midi.m</file>
       <file>${PROJECT_ROOT}\output_music.m</file>
       <file>${PROJECT_ROOT}\output_residuals.m</file>
       <file>${PROJECT_ROOT}\start_vocoder.m</file>
       <file>${PROJECT_ROOT}\voicing_decision.m</file>
     </fileset.depfun>
-    <fileset.resources />
+    <fileset.resources>
+      <file>${PROJECT_ROOT}\074_acoustic-guitar-strummy1.wav</file>
+      <file>${PROJECT_ROOT}\cocktail-jazz-piano-melody.wav</file>
+      <file>${PROJECT_ROOT}\dubstep.flac</file>
+      <file>${PROJECT_ROOT}\dubstep_beats.mp3</file>
+      <file>${PROJECT_ROOT}\flamenco.flac</file>
+      <file>${PROJECT_ROOT}\flute.wav</file>
+      <file>${PROJECT_ROOT}\hiphop.mp3</file>
+      <file>${PROJECT_ROOT}\mistery-piano-violin-sad-melody.wav</file>
+      <file>${PROJECT_ROOT}\output.wav</file>
+      <file>${PROJECT_ROOT}\prova_vocoder_16.wav</file>
+      <file>${PROJECT_ROOT}\prova_vocoder_44.wav</file>
+      <file>${PROJECT_ROOT}\prova_vocoder_44_2.wav</file>
+      <file>${PROJECT_ROOT}\prova_vocoder_8.wav</file>
+      <file>${PROJECT_ROOT}\speech1.wav</file>
+      <file>${PROJECT_ROOT}\speech2.wav</file>
+      <file>${PROJECT_ROOT}\speech3.wav</file>
+      <file>${PROJECT_ROOT}\techno_loop.flac</file>
+      <file>${PROJECT_ROOT}\test_voice.wav</file>
+      <file>${PROJECT_ROOT}\user_recording.wav</file>
+      <file>${PROJECT_ROOT}\wet-guitar-trap-melody_170bpm.wav</file>
+    </fileset.resources>
     <fileset.package />
     <build-deliverables>
       <file location="C:\Users\maria\OneDrive\Desktop" name="app_package" optional="false">C:\Users\maria\OneDrive\Desktop\app_package</file>
