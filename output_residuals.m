@@ -11,8 +11,8 @@ function [y,stateTX,zcrTX] = output_residuals(x,frame_length,lpcOrder,overlap,wi
     x=x(:); len = length(x);
 
     if overlap ~= 0
-        nframes = floor( len / (frame_length*overlap) );
-        x = x(1:(nframes*frame_length*overlap));
+        nframes = floor( len / (frame_length*(1-overlap)) );
+        x = x(1:(nframes*frame_length*(1-overlap)));
     else
         nframes = floor( len / (frame_length) );
         x = x(1:(nframes*frame_length));    
@@ -39,7 +39,7 @@ function [y,stateTX,zcrTX] = output_residuals(x,frame_length,lpcOrder,overlap,wi
         audio_file=audio_file(1:length(x));
     end
     
-    for i=1:nframes
+    for i=1:nframes-1
 
       % get current frame  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
       xFrame = x( idx ).*window;
@@ -87,7 +87,7 @@ function [y,stateTX,zcrTX] = output_residuals(x,frame_length,lpcOrder,overlap,wi
 
     idx = 1 : frame_length;
 
-    for i=1:nframes
+    for i=1:nframes-1
 
         % get sil / voiced / unvoiced decision %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
         state = stateTX(i);

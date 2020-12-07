@@ -11,11 +11,11 @@ function [y,stateTX,zcrTX] = output_midi(app,x,frame_length,lpcOrder,overlap,win
     x=x(:); len = length(x);
 
     if overlap ~= 0
-        nframes = floor( len / (frame_length*overlap) );
-        %x = x(1:(nframes*frame_length*overlap));
+        nframes = floor( len / (frame_length*(1-overlap)) );
+        x = x(1:(nframes*frame_length*(1-overlap)));
     else
         nframes = floor( len / (frame_length) );
-        %x = x(1:(nframes*frame_length));    
+        x = x(1:(nframes*frame_length));    
     end
 
     %= initialize data storage for transmitted parameters 
@@ -80,7 +80,7 @@ function [y,stateTX,zcrTX] = output_midi(app,x,frame_length,lpcOrder,overlap,win
     % ==================== DECODER main loop (start) ========================
 
     % initialize decoder variables
-    y = zeros(nframes*frame_length,1);
+    y = zeros(length(x),1);
 
     randn('seed',0);                    % random noise
     lpc_mem = zeros(1, lpcOrder );    % memory of the LPC filter
@@ -88,7 +88,7 @@ function [y,stateTX,zcrTX] = output_midi(app,x,frame_length,lpcOrder,overlap,win
 
     idx = 1 : frame_length;
 
-    for i=1:nframes-1,
+    for i=1:nframes-1
 
         %fprintf(1,'-------------------- <%3d>\n',i);
 
