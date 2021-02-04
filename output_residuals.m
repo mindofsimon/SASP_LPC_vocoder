@@ -11,8 +11,8 @@ function [y,stateTX,zcrTX] = output_residuals(x,frame_length,lpcOrder,overlap,wi
     x=x(:); len = length(x);
 
     if overlap ~= 0
-        nframes = floor( len / (frame_length*(1-overlap)) );
-        x = x(1:(nframes*frame_length*(1-overlap)));
+        nframes = floor( len / (frame_length) );
+        x = x(1:(nframes*frame_length));
     else
         nframes = floor( len / (frame_length) );
         x = x(1:(nframes*frame_length));    
@@ -43,7 +43,7 @@ function [y,stateTX,zcrTX] = output_residuals(x,frame_length,lpcOrder,overlap,wi
 
       % get current frame  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
       xFrame = x( idx ).*window;
-      idx = idx + floor(frame_length*(1-overlap));
+      idx = idx + frame_length;
       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
       % calculate frame energy (TODO) %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -120,7 +120,7 @@ function [y,stateTX,zcrTX] = output_residuals(x,frame_length,lpcOrder,overlap,wi
 
         % re-construct the output signal
         y( idx ) = yFrame;
-        idx = idx + floor(frame_length*(1-overlap));
+        idx = idx + frame_length;
 
     end
 end

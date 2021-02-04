@@ -13,7 +13,7 @@ overlap=app.OverlapEditField.Value/100;
 res_file= app.ResidualsFileDropDown.Value;
 
 % Initialize codec parameters
-frame_length = fs*duration_win;% 160 sample frames at 8kHz: 20 ms
+frame_length = floor(fs*duration_win*(1-overlap));% 160 sample frames at 8kHz: 20 ms
 %Setting Window Type
 if(win_type=="Rectangular")
     window=rectwin(frame_length);
