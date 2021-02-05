@@ -14,7 +14,7 @@ With Music file, we extract the fundamental frequencies from a preloaded music f
 With Residual we apply the LPC estimation also on the music file and we will use the residual part as excitation signal. 
 In this case the music file can be choosen by the user from a list inside the interface.
 
-In the interface there is also a plot section, where we put the input and output waveform plot. We add also the state classification(voiced, unvoiced, silece) for each frame and the zero-crossing rate value for each frame.
+In the interface there is also a plot section, where we put the input and output waveform plots. We add also the state classification(voiced, unvoiced, silece) for each frame and the zero-crossing rate value for each frame.
 
 To listen to the output file there is a button above the output plot, and in order to have a feedback we add also a button to listen to the input file and the music file. In the MIDI mode the music is played in real-time with a MATLAB synth.
 
