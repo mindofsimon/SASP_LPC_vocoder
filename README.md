@@ -10,7 +10,7 @@ The analysing parameters are totally parametric and we decided to give to the us
 
 For the synthsis the user can choose between 3 modes to generate the excitation signal: MIDI, Music file (monophonic), Residuals.                  
 With MIDI we create an excitation signal based on the fundamental frequency played by the user.                                   
-With Music file, we extract the fundamental frequencies from a preloaded music file and the build a train of pulses based on these frequencies.
+With Music file, we extract the fundamental frequencies from a preloaded music file and the build a train of pulses based on these frequencies.                   
 With Residual we apply the LPC estimation also on the music file and we will use the residual part as excitation signal. 
 In this case the music file can be choosen by the user from a list inside the interface.
 
