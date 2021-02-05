@@ -6,7 +6,7 @@ TO DOWNLOAD OUR (MATLAB) APP GO TO : https://separate-leaf.surge.sh/
 LPC_Vocoder is a Matlab App, able to synthetize a voice based on the LPC parameter of an input signal.
 
 The input signal can be recorded live or the user can choose among a pre-loaded collection.
-The analysing parameters are totally parametric and we decided to give to the user the maximum freedom on this choice.
+The analysis parameters are totally parametric and we decided to give to the user the maximum freedom on this choice.
 
 For the synthsis the user can choose between 3 modes to generate the excitation signal: MIDI, Music file (monophonic), Residuals.                  
 With MIDI we create an excitation signal based on the fundamental frequency played by the user.                                   
