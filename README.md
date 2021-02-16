@@ -1,7 +1,9 @@
 # SASP_LPC_vocoder
 @POLIMI:MAE - SASP project A.Y. 2019/2020 - Daniele Leonzio, Simone Mariani
 
-TO DOWNLOAD OUR (MATLAB) APP GO TO : https://separate-leaf.surge.sh/
+TO DOWNLOAD OUR (MATLAB) APP GO TO : https://separate-leaf.surge.sh/ , download and run the installer, then you will find the app in the MATLAB APPS tab.
+
+IF YOU DOWNLOAD FROM THIS REPO: to start the app you will need to open the MATLAB console (be careful to have opened the folder containing all the files) and digit 'interface'.
 
 LPC_Vocoder is a Matlab App, able to synthetize a voice based on the LPC parameter of an input signal.
 
