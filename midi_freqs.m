@@ -2,12 +2,12 @@ function [freqs, pitch ,i, t, state] = midi_freqs(msg, duration_frames, samples_
 time=msg(i-1).Timestamp+t;
 
     if(i==length(msg))
-        %i=i; 
-    elseif (time-msg(i).Timestamp<0.02)
+        i=i; 
+    elseif (time-msg(i).Timestamp<duration_frames)
         i=i+1;
         t=0;
     else
-        t=t+0.01;
+        t=t+duration_frames/2;
     end
     
     

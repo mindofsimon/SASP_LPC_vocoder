@@ -1,10 +1,8 @@
 function [ y ] = lpc_vocoder_main( x,fs,app )
 
 % Simple LPC vocoder without quantization
-% Input signal in the range -1:1 scaled to -32768 ... 32767
 x = x/max(x);
 x = x .* 2^15;
-%duration_win=0.02;
 
 %get input from interface
 duration_win=app.FrameLengthEditField.Value/1000;%from milliseconds to seconds

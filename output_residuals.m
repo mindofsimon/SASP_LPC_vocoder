@@ -27,7 +27,7 @@ function [y,stateTX,zcrTX] = output_residuals(x,frame_length,lpcOrder,overlap,wi
     pitchTX = zeros(1,        nframes);
     residualTX = zeros(frame_length, nframes);
 
-    % ====================== CODER main loop (start) ========================
+    
     idx = 1 : frame_length;
 
     count_music=0;
@@ -41,27 +41,24 @@ function [y,stateTX,zcrTX] = output_residuals(x,frame_length,lpcOrder,overlap,wi
     
     for i=1:nframes-1
 
-      % get current frame  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      % get current frame 
       xFrame = x( idx ).*window;
       idx = idx + frame_length;
-      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-      % calculate frame energy (TODO) %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      % calculate frame energy 
       g = lpc_gain(xFrame); 
       ampTX(:,i) = g;
-      %fprintf(1,'Gain: %f\n', g);
-      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-      % sil / voiced / unvoiced decision (TODO) %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      % sil / voiced / unvoiced decision 
       % define a silence threshold (based on frame energy)
       % define a voiced threshold (based on zcr)
       [ state, zcr ] = voicing_decision( xFrame );
       stateTX(:,i) = state;
       zcrTX(:,i) = zcr;
-      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-      % calculate prediction residual (TODO) %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      
+      
+      % calculate prediction residual 
 
       if state == unvoiced | state == voiced
           %residuals part
@@ -71,13 +68,11 @@ function [y,stateTX,zcrTX] = output_residuals(x,frame_length,lpcOrder,overlap,wi
 
           aCoeffTX(:,i) = a;
       end
-      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+     
     end
-    % ====================== CODER main loop (end) ==========================
+   
 
-
-    % ==================== DECODER main loop (start) ========================
+  
 
     % initialize decoder variables
     y = zeros(length(x),1);
@@ -89,25 +84,23 @@ function [y,stateTX,zcrTX] = output_residuals(x,frame_length,lpcOrder,overlap,wi
 
     for i=1:nframes-1
 
-        % get sil / voiced / unvoiced decision %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        % get sil / voiced / unvoiced decision 
         state = stateTX(i);
-        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+       
 
-        % get pitch delay %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        % get pitch delay
         ltpDelay = pitchTX(i);
-        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-        % get LPC coefficients %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+       
+        % get LPC coefficients
         a = aCoeffTX(:, i);     
-        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%      
-
+       
         %residual part
         [ lpc_output, lpc_mem ] = lpc_synth(residualTX(:,i), a, lpc_mem);
 
-        % signal scaling (TODO) %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        % signal scaling 
         amp = ampTX(i);
         lpc_power = sqrt(lpc_output' * lpc_output) / frame_length;
-        %
+        
         if lpc_power > 0
           gain = amp/lpc_power;
         else
@@ -116,8 +109,7 @@ function [y,stateTX,zcrTX] = output_residuals(x,frame_length,lpcOrder,overlap,wi
         yFrame = gain * lpc_output;
         g = lpc_gain(yFrame); 
         ampRX(:,i) = g;
-        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%       
-
+        
         % re-construct the output signal
         y( idx ) = yFrame;
         idx = idx + frame_length;

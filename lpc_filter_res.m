@@ -2,13 +2,12 @@ function [res_audio_frame, cont] = lpc_filter_res(audio_file, order, cont, win_l
 
       xFrame=audio_file(cont:cont+win_length);
       len = length(xFrame);
-    
-      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   
       % amplitude of input signal
       %
       amp = sqrt( xFrame' * xFrame / len );
 
-      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
       % linear prediction coefficients
       a = lpc( xFrame, order );
       coeff = a(2:end);
