@@ -5,6 +5,8 @@ TO DOWNLOAD OUR (MATLAB) APP GO TO : https://separate-leaf.surge.sh/ , download 
 
 IF YOU DOWNLOAD FROM THIS REPO: to start the app you will need to open the MATLAB console (be careful to have opened the folder containing all the files) and digit 'interface'.
 
+YOU CAN WATCH A LITTLE DEMO HERE: https://drive.google.com/file/d/1wOAx5Boc8jfpGtfz8gMh3FCh5WqTQsrn/view?usp=sharing
+
 LPC_Vocoder is a Matlab App, able to synthetize a voice based on the LPC parameter of an input signal.
 
 The input signal can be recorded live or the user can choose among a pre-loaded collection.
