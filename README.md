@@ -7,6 +7,8 @@ IF YOU DOWNLOAD FROM THIS REPO: to start the app you will need to open the MATLA
 
 YOU CAN WATCH A LITTLE DEMO HERE: https://drive.google.com/file/d/1wOAx5Boc8jfpGtfz8gMh3FCh5WqTQsrn/view?usp=sharing
 
+POWER POINT PRESENTATION HERE: https://docs.google.com/presentation/d/1DyQpeu_MZImMoFzP1hio0SIGBO2wOLfsqHAppR5FOwQ/edit?usp=sharing
+
 LPC_Vocoder is a Matlab App, able to synthetize a voice based on the LPC parameter of an input signal.
 
 The input signal can be recorded live or the user can choose among a pre-loaded collection.
